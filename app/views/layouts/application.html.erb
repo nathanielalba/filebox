@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-custom">
+<nav class="navbar navbar-default navbar-custom">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -23,15 +23,30 @@
 				<li><a href="#">Link</a></li>
 				<li><a href="#">Link2</a></li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<% if current_user %>
+					<li><%= link_to "Upload!", "#" %></li>
+					<li><%= link_to "My Account", "#" %></li>
+					<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+				<% else %>
+					<li><%= link_to "Sign Up!", new_user_registration_path %></li>
+					<li><%= link_to "Sign in", new_user_session_path %></li>
+				<% end %>
+			</ul>
 		</div>
 	</div>
 </nav>
 	<% flash.each do |name, msg| %>
-		<%= content_tag :div, msg, class: name %>
+		<div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+			<a class="close" data-dismiss="alert">&#215;</a>
+			<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+		</div>
 	<% end %>
 <div class="container">
 	<%= yield %>
 </div>
+
+<%= render "shared/footer" %>
 
 </body>
 </html>
