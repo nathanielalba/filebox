@@ -1,0 +1,21 @@
+<%= link_to "Upload File", new_attachment_path, class: "btn btn-primary" %>
+<br>
+<br>
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>File title:</th>
+			<th>Download Link</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @my_files.each do |file| %>
+		<tr>
+			<td><%= file.name %></td>
+			<td><%= link_to "Download File", attachment_url(file, :attachment) %></td>
+			<td><%= button_to "Delete", file, method: :delete, data: { confirm: "Are you sure?" } %></td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>

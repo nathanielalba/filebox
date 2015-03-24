@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :files do
+  resources :attachments do
   	collection do
   		get "search"
   	end
   end
 
-  root 'files#index'
+  root 'attachments#index'
 end

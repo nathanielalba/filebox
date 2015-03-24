@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323003826) do
+ActiveRecord::Schema.define(version: 20150324024111) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "attachments", ["user_id"], name: "index_attachments_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150323003826) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
