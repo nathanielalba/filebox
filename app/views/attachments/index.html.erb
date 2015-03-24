@@ -1,18 +1,18 @@
-<% if current_user %>
+<div class="jumbotron jumbo-custom">
+	<h1>Filebox</h1>
+	<p>Welcome to Filebox. The site where you can upload your files to!</p>
+</div>
+<div class="search-bar-custom">
+	<%= form_tag search_attachments_path, method: :get, role: "search" do %>
+		<p>
+			<%= text_field_tag :search, params[:search], class: "form-control" %>
+			<%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+		</p>
+	<% end %>
+</div>
+
+<% if user_signed_in? %>
 	<%= render "shared/search_bar" %>
 		<h3>My files:</h3>
 	<%= render "shared/home_page" %>
-<% else %>
-	<div class="jumbotron jumbo-custom">
-		<h1>Filebox</h1>
-		<p>Welcome to Filebox. The site where you can upload your files to!</p>
-	</div>
-	<div class="search-bar-custom">
-		<%= form_tag search_attachments_path, method: :get, role: "search" do %>
-			<p>
-				<%= text_field_tag :search, params[:search], class: "form-control" %>
-				<%= submit_tag "Search", name: nil, class: "btn btn-default" %>
-			</p>
-		<% end %>
-	</div>
 <% end %>

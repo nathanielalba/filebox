@@ -1,0 +1,22 @@
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>File title:</th>
+			<th>Download Link</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<% if !@files.empty? %> 
+		<tbody>
+		<% @files.each do |file| %>
+			<tr>
+				<td><%= file.name %></td>
+				<td><%= link_to "Download File", file.attachment_url %></td>
+				<td><%= button_to "Delete", file, method: :delete, data: { confirm: "Are you sure?" } %></td>
+			</tr>
+		</tbody>
+		<% end %>
+	<% else %>
+		<h1>Nothing was found!</h1>
+	<% end %>
+</table>
