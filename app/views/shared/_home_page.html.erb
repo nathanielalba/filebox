@@ -13,7 +13,7 @@
 	<% @my_files.each do |file| %>
 		<tr>
 			<td><%= file.name %></td>
-			<td><%= link_to "Download File", attachment_url(file, :attachment) %></td>
+			<td><%= link_to "Download File",[:download, attachments_path(file)] %></td>
 			<td><%= button_to "Delete", file, method: :delete, data: { confirm: "Are you sure?" } %></td>
 		</tr>
 	</tbody>

@@ -1,4 +1,13 @@
 class AttachmentsController < ApplicationController
+
+	def search
+    if params[:search].present?
+  		@file = Attachment.search(params[:search])
+  	else
+      @file = Attachment.all
+  	end
+  end
+
   def index
   	@files = Attachment.all
   	@my_files = current_user.attachments
